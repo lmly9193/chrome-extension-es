@@ -8,17 +8,27 @@ document.addEventListener('mousedown', function (event) {
 }, false);
 
 document.addEventListener('mouseup', function (event) {
-    if (window.getSelection().toString().length > 0) {
-        const button = document.querySelector('#everything-search');
-        if (!button) {
-            const range = window.getSelection().getRangeAt(0).getBoundingClientRect();
-            const el = $el('div', {
-                id: 'everything-search',
-                style: `top: ${range.top + 20}px; left: ${event.clientX + 20}px;`
-            });
-            document.body.appendChild(el);
+    const delay = 10;
+    const offsetX = 16;
+    const offsetY = 23;
+    setTimeout(function () {
+        const gtx = document.querySelector('#gtx-trans');
+        if (window.getSelection().toString().length > 0) {
+            const button = document.querySelector('#everything-search');
+            if (!button) {
+                const range = window.getSelection().getRangeAt(0).getBoundingClientRect();
+                const el = $el('div', {
+                    id: 'everything-search',
+                    style: `left: ${event.clientX + offsetX}px; top: ${range.top + window.scrollY + offsetY}px;`
+                });
+                if (gtx) {
+                    el.style.left = gtx.style.left + offsetX;
+                    el.style.top = gtx.style.top;
+                }
+                document.body.appendChild(el);
+            }
         }
-    }
+    }, delay);
 });
 
 document.addEventListener('selectionchange', function () {
