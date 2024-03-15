@@ -11,17 +11,16 @@
         "128": "images/icon-128.png"
     },
     "action": {
-        "default_popup": "index.html",
-        "default_icon": "images/icon-16.png"
+        "default_popup": "popup/popup.html"
     },
     "background": {
-        "service_worker": "scripts/background.js"
+        "service_worker": "background.js"
     },
     "content_scripts": [
         {
             "matches": ["<all_urls>"],
             "js": ["scripts/content.js"],
-            "css": ["styles.css"]
+            "css": ["scripts/content.css"]
         }
     ]
 }
